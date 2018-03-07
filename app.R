@@ -47,8 +47,10 @@ server <- function(input, output) {
     content = function(file) {
       wb <- createWorkbook()
       modifyBaseFont(wb, fontSize=1, fontColour="white", fontName="Calibri")
-      addWorksheet(wb, "img", gridLines=FALSE, zoom=25)
+      addWorksheet(wb, "img", gridLines=FALSE, zoom=50)
       writeData(wb, sheet=1, x=img())
+      setColWidths(wb, sheet=1, cols=1:ncol(img()), widths=1)
+      setRowHeights(wb, sheet=1, rows=1:nrow(img()), heights=1)
       conditionalFormatting(wb, sheet=1, cols=1:ncol(img()), rows=1:nrow(img()),
                             style=c("black", "white"),
                             rule =c(0, 1),
